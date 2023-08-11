@@ -1,0 +1,26 @@
+[
+    {
+        "firstName": "sai",
+        "lastName": "charan",
+        "rememberMe": false
+    },
+    {
+        "firstName": "hermoine",
+        "lastName": "granger",
+        "rememberMe": false
+    },
+    {
+        "firstName": "ron",
+        "lastName": "weasely",
+        "rememberMe": false
+    },
+    {
+        "firstName": "harry",
+        "lastName": "potter",
+        "rememberMe": false
+    },
+    {
+        "firstName": "Reamus",
+        "lastName": "Lupin"
+    }
+]

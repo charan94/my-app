@@ -10,17 +10,17 @@ const UsersList = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        
+
     }, []);
 
     const removeUser = (user) => {
-         const filteredUsers = usersList.filter(u => u.firstName !== user.firstName && u.lastName !== user.lastName)
+        const filteredUsers = usersList.filter(u => u.firstName !== user.firstName && u.lastName !== user.lastName)
         dispatch(personalInfoActions.addUsers(filteredUsers));
     }
 
 
     const constructTableData = () => {
-        if(!usersList.length) {
+        if (!usersList.length) {
             return (
                 <tr>
                     <td colSpan={2}> No Data Found</td>
@@ -32,14 +32,17 @@ const UsersList = () => {
                 <tr key={i}>
                     <td>{user?.firstName}</td>
                     <td>{user?.lastName}</td>
-                    <td><button type="button" onClick={(e) => removeUser(user)}>Remove</button></td>
+                    <td>
+                        <button type="button" onClick={(e) => removeUser(user)}>Remove</button><br />
+                        <button type="button">Edit</button>
+                    </td>
                 </tr>
             )
         })
     }
 
     return (
-        <table style={{margin: "10px 20px", border: "1px solid #fff"}}>
+        <table style={{ margin: "10px 20px", border: "1px solid #fff" }}>
             <thead>
                 <tr>
                     <th>First Name</th>

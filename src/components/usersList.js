@@ -1,6 +1,6 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { getPersonalInfoState } from '../reducers/personal-info.reducer';
+import { useDispatch, useSelector } from 'react-redux';
+import { getPersonalInfoState, personalInfoActions } from '../reducers/personal-info.reducer';
 
 const UsersList = () => {
 
@@ -8,7 +8,14 @@ const UsersList = () => {
     console.log('personalInfoState ', personalInfoState);
     const usersList = personalInfoState.users;
 
-    
+    const dispatch = useDispatch();
+
+    const removeUser = (user) => {
+         const filteredUsers = usersList.filter(u => u.firstName !== user.firstName && u.lastName !== user.lastName)
+        //  console.log('filtered ', filteredUsers);
+        dispatch(personalInfoActions.addUsers(filteredUsers));
+    }
+
 
     const constructTableData = () => {
         if(!usersList.length) {
@@ -23,7 +30,7 @@ const UsersList = () => {
                 <tr key={i}>
                     <td>{user?.firstName}</td>
                     <td>{user?.lastName}</td>
-                    <td><button type="button">Remove</button></td>
+                    <td><button type="button" onClick={(e) => removeUser(user)}>Remove</button></td>
                 </tr>
             )
         })

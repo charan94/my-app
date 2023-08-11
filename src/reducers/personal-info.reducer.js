@@ -1,4 +1,5 @@
 import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
+import { getUsersAction } from "../actions/personal-info.actions";
 
 
 
@@ -6,6 +7,8 @@ export const PERSONAL_INFO_FEATURE_KEY = "personal-info";
 
 const PERSONAL_INFO_INITIAL_STATE = {
     users: [],
+    loading: false,
+    error: null
 }
 
 export const personalInfoAdapter = createEntityAdapter();
@@ -27,6 +30,22 @@ export const personalInfoSlice = createSlice({
                 state.users = payload;
             }
         }
+    },
+    extraReducers: (builder) => {
+        builder
+            .addCase(getUsersAction.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(getUsersAction.fulfilled, (state, { payload }) => {
+                if (payload && Array.isArray(payload)) {
+                    state.users = payload;
+                }
+                state.loading = false;
+            })
+            .addCase(getUsersAction.rejected, (state, _) => {
+                state.loading = false;
+                state.error = _.error.message;
+            })
     }
 });
 

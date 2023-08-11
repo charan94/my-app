@@ -1,18 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPersonalInfoState, personalInfoActions } from '../reducers/personal-info.reducer';
 
 const UsersList = () => {
 
     const personalInfoState = useSelector(getPersonalInfoState);
-    console.log('personalInfoState ', personalInfoState);
     const usersList = personalInfoState.users;
 
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        
+    }, []);
+
     const removeUser = (user) => {
          const filteredUsers = usersList.filter(u => u.firstName !== user.firstName && u.lastName !== user.lastName)
-        //  console.log('filtered ', filteredUsers);
         dispatch(personalInfoActions.addUsers(filteredUsers));
     }
 

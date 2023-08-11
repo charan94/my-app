@@ -1,9 +1,12 @@
 const express = require("express");
 const fs = require('fs');
 const path = require("path");
+const cors = require("cors");
 
 const app = express();
 app.use(express.json());
+
+app.use(cors());
 
 app.get('/users', async (req, res, next) => {
     const users = fs.readFileSync(path.join(__dirname, "data/users.json"))
